@@ -5,7 +5,7 @@ PublishOn:
 
 Build:
 - Version:
-    Path: Whiskey\Whiskey.psd1
+    Path: MODULE_NAME\MODULE_NAME.psd1
     Prerelease:
     - "*/*": alpha$(WHISKEY_BUILD_NUMBER)
     - develop: rc$(WHISKEY_BUILD_NUMBER)
@@ -36,17 +36,6 @@ Build:
     OnlyDuring: Clean
     Path: reset.ps1
 
-- Pester:
-    Configuration: 
-        Run: 
-            Path: Tests\*.Tests.ps1
-            Exit: true
-            Throw: true
-        TestResult:
-            Enabled: true
-            OutputPath: .output\pester.xml
-            TestSuiteName: Template-PSModule-OSS-Apache2.0
-
 # Build runs twice on some servers, so delete any ZIP file created by another build.
 - Delete:
     Path: .output\*.zip
@@ -60,9 +49,9 @@ Build:
     DestinationDirectory: Whiskey
 
 - Zip:
-    ArchivePath: .output\Whiskey-$(WHISKEY_SEMVER2).zip
+    ArchivePath: .output\MODULE_NAME-$(WHISKEY_SEMVER2).zip
     Path: 
-    - Whiskey
+    - MODULE_NAME
     Exclude:
     - "*.pdb"
     - "*.orig"
@@ -70,22 +59,29 @@ Build:
 - Exec:
     OnlyBy: BuildServer
     Path: appveyor
-    Argument: [ 'PushArtifact', '.output/Whiskey-$(WHISKEY_SEMVER2).zip', '-DeploymentName', 'GitHub' ]
+    Argument: [ 'PushArtifact', '.output/MODULE_NAME-$(WHISKEY_SEMVER2).zip', '-DeploymentName', 'GitHub' ]
 
-- Exec:
-    OnlyBy: BuildServer
-    Path: appveyor
-    Argument: [ 'PushArtifact', 'Whiskey/build.ps1', '-DeploymentName', 'GitHub' ]
 
 - PublishPowerShellModule:
-    Path: Whiskey
+    Path: MODULE_NAME
 
 - Exec:
     OnlyBy: BuildServer
     Path: appveyor
     Argument: [
         'PushArtifact',
-        '.output/Whiskey.$(WHISKEY_SEMVER2_NO_BUILD_METADATA).nupkg',
+        '.output/MODULE_NAME.$(WHISKEY_SEMVER2_NO_BUILD_METADATA).nupkg',
         '-DeploymentName',
         'PowerShellGallery'
     ]
+
+- Pester:
+    Configuration: 
+        Run: 
+            Path: Tests\*.Tests.ps1
+            Exit: true
+            Throw: true
+        TestResult:
+            Enabled: true
+            OutputPath: .output\pester.xml
+            TestSuiteName: Template-PSModule-OSS-Apache2.0

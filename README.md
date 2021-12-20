@@ -17,22 +17,15 @@ Pass the name of the module to the `ModuleName` parameter. The script will:
 Things you'll still need to do after creating your repository:
 
 * Turn on branch protections.
-* Create "develop" branches.
+* Create "develop" branch.
 * Create a build in AppVeyor.
 * Create a feature branch.
 * Commit and push your new branch. A build should run in AppVeyor and finish successfully after a minute or so. The
 default build will run using:
-    * Powershell 7.1 on:
-        * macOS
-    * Powershell 7.2 on:
-        * Ubuntu
-    * Windows Powershell 5.1/.NET 4.6.2 on:
-        * Visual Studio 2013
-    * Windows Powershell 5.1/.NET 4.8 on:
-        * Visual Studio 2019
-    * Windows Powershell 6.2 on:
-        * Visual Studio 2015
-    * Windows Powershell 7.1 on:
-        * Visual Studio 2019
-    * Windows Powershell 7.2 on:
-        * Visual Studio 2022
+  * Windows PowerShell 5.1/.NET 4.6.2
+  * Windows PowerShell 5.1/.NET 4.8
+  * PowerShell 6.2 on Windows
+  * PowerShell 7.1 on Windows
+  * PowerShell 7.2 on Windows
+  * PowerShell 7.1 on macOS
+  * PowerShell 7.2 on Ubuntu
