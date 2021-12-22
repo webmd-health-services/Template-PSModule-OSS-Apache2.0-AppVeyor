@@ -20,13 +20,17 @@ $filesWithModuleName =
 foreach( $file in $filesWithModuleName )
 {
     $newName = $file.Name -replace 'MODULE_NAME',$ModuleName
-    Write-Verbose -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
+    Write-Information -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
     Rename-Item -Path $file.FullName -NewName $newName
 }
 
-Write-Information ('Putting TODO.md in place.')
 $readmePath = Join-Path -Path $rootPath -ChildPath 'README.md'
-Rename-Item -Path $readmePath -NewName 'TODO.md'
+$todoPath = Join-Path -Path $rootPath -ChildPath 'TODO.md'
+if( (Test-Path -Path $readmePath) -and -not (Test-Path -Path $todoPath) )
+{
+    Write-Information ('Putting TODO.md in place.')
+    Rename-Item -Path $readmePath -NewName ($todoPath | Split-Path -Leaf)
+}
 
 Write-Information ("Removing ""MODULE_"" prefix in file/directory names.")
 $filesWithModulePrefix =
@@ -35,7 +39,13 @@ $filesWithModulePrefix =
 foreach( $file in $filesWithModulePrefix )
 {
     $newName = $file.Name -replace 'MODULE_', ''
-    Write-Verbose -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
+    $newPath = Join-Path -Path $file.Directory.FullName -ChildPath $newName
+    if( (Test-Path -Path $newPath) )
+    {
+        Write-Information -Message ("  Deleting $($newPath | Resolve-Path -Relative)")
+        Remove-Item -Path $newPath -Force
+    }
+    Write-Information -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
     Rename-Item -Path $file.FullName -NewName $newName
 }
 
