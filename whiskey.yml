@@ -46,7 +46,7 @@ Build:
     - README.md
     - LICENSE
     - NOTICE
-    DestinationDirectory: Whiskey
+    DestinationDirectory: MODULE_NAME
 
 - Zip:
     ArchivePath: .output\MODULE_NAME-$(WHISKEY_SEMVER2).zip
