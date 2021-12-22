@@ -12,15 +12,6 @@ $InformationPreference = 'Continue'
 
 $rootPath = $PSScriptRoot | Resolve-Path -Relative
 
-$moduleReadmePath = Join-Path -Path $rootPath -ChildPath 'MODULE_README.md'
-if( (Test-Path -Path $moduleReadmePath) )
-{
-    Write-Information ('Putting README.md and TODO.md in place.')
-    $readmePath = Join-Path -Path $rootPath -ChildPath 'README.md'
-    Rename-Item -Path $readmePath -NewName 'TODO.md'
-    Rename-Item -Path $moduleReadmePath -NewName 'README.md'
-}
-
 Write-Information ("Replacing ""MODULE_NAME"" with ""$($ModuleName)"" in file/directory names.")
 $getChildItemPath = Join-Path -Path $rootPath -ChildPath '*'
 $filesWithModuleName = 
@@ -29,6 +20,21 @@ $filesWithModuleName =
 foreach( $file in $filesWithModuleName )
 {
     $newName = $file.Name -replace 'MODULE_NAME',$ModuleName
+    Write-Verbose -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
+    Rename-Item -Path $file.FullName -NewName $newName
+}
+
+Write-Information ('Putting TODO.md in place.')
+$readmePath = Join-Path -Path $rootPath -ChildPath 'README.md'
+Rename-Item -Path $readmePath -NewName 'TODO.md'
+
+Write-Information ("Removing ""MODULE_"" prefix in file/directory names.")
+$filesWithModulePrefix =
+    Get-ChildItem -Path $getChildItemPath -Recurse -Filter "MODULE_*" |
+    Sort-Object -Property { $_.FullName.Length } -Descending
+foreach( $file in $filesWithModulePrefix )
+{
+    $newName = $file.Name -replace 'MODULE_', ''
     Write-Verbose -Message ("  $($file.FullName | Resolve-Path -Relative) -> $($newName)")
     Rename-Item -Path $file.FullName -NewName $newName
 }
