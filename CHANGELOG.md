@@ -1,10 +1,18 @@
-# 2.0.0
+# Template-PSModule-OSS-Apache2.0 Changelog
 
-## Added
+## 2.0.1
+
+* Fixed: initial tests still in Pester 4 syntax, but tests get run by Pester 5.
+* Fixed: missed a token in one of the test files.
+* Fixed: initial whiskey.yml set AppVeyor build number incorrectly.
+
+## 2.0.0
+
+### Added
 
 * Added an empty `CHANGELOG.md` file for the module's changelog.
 
-## Changed
+### Changed
 
 * Updated default `appveyor.yml` to runs builds on all operating system/PowerShell combinations available in AppVeyor:
   * Windows PowerShell 5.1/.NET 4.6.2
@@ -23,11 +31,10 @@
   * The ZIP and .nupkg files are uploaded as artificats to AppVeyor so they can be deployed with AppVeyor. It is assumed you have a GitHub deployment named `GitHub` and a PowerShell Gallery deployment named `PowerShellGallery`.
   * CHANGELOG.md, README.md, LICENSE, and NOTICE files are now included in the module when packaging.
 
-## Removed
+### Removed
 
 * Removed all publishing tasks and logic from the default `whiskey.yml`. Publishing is now recommended to be done by AppVeyor.
 
-
-# 1.0.0
+## 1.0.0
 
 * Initial Version
