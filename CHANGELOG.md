@@ -1,10 +1,13 @@
 # Template-PSModule-OSS-Apache2.0 Changelog
 
-## 2.0.1
+## 2.1.0
 
 * Fixed: initial tests still in Pester 4 syntax, but tests get run by Pester 5.
 * Fixed: missed a token in one of the test files.
 * Fixed: initial whiskey.yml set AppVeyor build number incorrectly.
+* Fixed: builds fail on Windows PowerShell 5.1/.NET 4.6.2 because PackageManagement and PowerShellGet modules are too
+old.
+* Added empty prism.json files.
 
 ## 2.0.0
 
