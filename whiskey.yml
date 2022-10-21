@@ -28,6 +28,14 @@ Build:
     DeleteSourceFiles: true
     TextSeparator: "$(NewLine)$(NewLine)"
 
+- CopyFile:
+    Path:
+    - LICENSE.txt
+    - NOTICE.txt
+    - README.md
+    - CHANGELOG.md
+    DestinationDirectory: Carbon
+
 - PowerShell:
     ExceptDuring: Clean
     Path: init.ps1
