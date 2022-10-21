@@ -14,7 +14,7 @@ $rootPath = $PSScriptRoot | Resolve-Path -Relative
 
 Write-Information ("Replacing ""MODULE_NAME"" with ""$($ModuleName)"" in file/directory names.")
 $getChildItemPath = Join-Path -Path $rootPath -ChildPath '*'
-$filesWithModuleName = 
+$filesWithModuleName =
     Get-ChildItem -Path $getChildItemPath -Recurse -Filter "*MODULE_NAME*" |
     Sort-Object -Property { $_.FullName.Length } -Descending
 foreach( $file in $filesWithModuleName )
@@ -56,6 +56,7 @@ foreach( $repoFile in $repoFiles )
     $filePath = $repoFile.FullName | Resolve-Path -Relative
     $text = Get-Content -Path $filePath -Raw
     $newText = $text -replace 'MODULE_NAME',$ModuleName
+    $newText = $text -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )
     {
         Write-Verbose -Message "  $($filePath)"
@@ -68,7 +69,7 @@ if( -not (Test-Path -Path (Join-Path -Path $rootPath -ChildPath 'build.ps1')) )
     Write-Information "Installing and enabling Whiskey."
     if( $PSCmdlet.ShouldProcess($rootPath, 'installing and enabling Whiskey') )
     {
-        $uri = 'https://github.com/webmd-health-services/Whiskey/releases/latest/download/build.ps1' 
+        $uri = 'https://github.com/webmd-health-services/Whiskey/releases/latest/download/build.ps1'
         Invoke-WebRequest -Uri $uri -OutFile 'build.ps1'
     }
 }
