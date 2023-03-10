@@ -1,7 +1,10 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [Parameter(Mandatory)]
-    [String]$ModuleName
+    [String]$ModuleName,
+
+    [Parameter(Mandatory)]
+    $GitHubOrganizationName
 )
 
 Set-StrictMode -Version 'Latest'
@@ -58,6 +61,7 @@ foreach( $repoFile in $repoFiles )
     $newText = $text = Get-Content -Path $filePath -Raw
     $newText = $newText -creplace 'MODULE_NAME',$ModuleName
     $newText = $newText -creplace 'MODULE_GUID',$moduleGuid
+    $newText = $newText -creplace 'GITHUB_ORGANIZATION_NAME',$GitHubOrganizationName
     $newText = $newText -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )
     {

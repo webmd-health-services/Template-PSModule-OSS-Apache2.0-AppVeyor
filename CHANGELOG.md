@@ -2,8 +2,15 @@
 
 ## 2.2.0
 
+### Changes
+
+* `ReleaseNotes` module manifest private metadata now defaults to the URL of the module's CHANGELOG.md file in GitHub.
+
+### Fixes
+
 * Fixed: Initialize-Repository.ps1 doesn't replace `MODULE_NAME` placeholder in files.
 * Fixed: Publishing a module to the PowerShell Gallery fails because its `Guid` metadata is missing.
+
 
 ## 2.1.0
 
