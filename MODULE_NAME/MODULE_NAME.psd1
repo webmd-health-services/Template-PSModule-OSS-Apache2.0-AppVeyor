@@ -21,7 +21,7 @@
     ModuleVersion = '0.0.0'
 
     # ID used to uniquely identify this module
-    GUID = ''
+    GUID = 'MODULE_GUID'
 
     # Author of this module
     Author = 'WebMD Health Services'

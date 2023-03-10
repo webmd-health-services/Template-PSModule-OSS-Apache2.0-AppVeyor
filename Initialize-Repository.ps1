@@ -49,6 +49,7 @@ foreach( $file in $filesWithModulePrefix )
     Rename-Item -Path $file.FullName -NewName $newName
 }
 
+$moduleGuid = [Guid]::NewGuid()
 Write-Information ("Replacing ""MODULE_NAME"" -> ""$($ModuleName)"" in file contents.")
 $repoFiles = Get-ChildItem -Path $getChildItemPath -Exclude '.git' -Recurse -File
 foreach( $repoFile in $repoFiles )
@@ -56,6 +57,7 @@ foreach( $repoFile in $repoFiles )
     $filePath = $repoFile.FullName | Resolve-Path -Relative
     $newText = $text = Get-Content -Path $filePath -Raw
     $newText = $newText -creplace 'MODULE_NAME',$ModuleName
+    $newText = $newText -creplace 'MODULE_GUID',$moduleGuid
     $newText = $newText -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )
     {
