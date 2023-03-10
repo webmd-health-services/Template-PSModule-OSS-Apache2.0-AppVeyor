@@ -1,5 +1,9 @@
 # Template-PSModule-OSS-Apache2.0 Changelog
 
+## 2.2.0
+
+* Fixed: Initialize-Repository.ps1 doesn't replace `MODULE_NAME` placeholder in files.
+
 ## 2.1.0
 
 * Fixed: initial tests still in Pester 4 syntax, but tests get run by Pester 5.

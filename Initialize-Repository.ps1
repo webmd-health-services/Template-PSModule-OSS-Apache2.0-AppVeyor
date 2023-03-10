@@ -54,9 +54,9 @@ $repoFiles = Get-ChildItem -Path $getChildItemPath -Exclude '.git' -Recurse -Fil
 foreach( $repoFile in $repoFiles )
 {
     $filePath = $repoFile.FullName | Resolve-Path -Relative
-    $text = Get-Content -Path $filePath -Raw
-    $newText = $text -replace 'MODULE_NAME',$ModuleName
-    $newText = $text -creplace '\[YYYY\]', (Get-Date).Year
+    $newText = $text = Get-Content -Path $filePath -Raw
+    $newText = $newText -creplace 'MODULE_NAME',$ModuleName
+    $newText = $newText -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )
     {
         Write-Verbose -Message "  $($filePath)"
