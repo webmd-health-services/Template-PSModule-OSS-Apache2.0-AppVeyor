@@ -15,6 +15,8 @@ Gallery.
 * Fixed: Initialize-Repository.ps1 doesn't replace `MODULE_NAME` placeholder in files.
 * Fixed: Publishing a module to the PowerShell Gallery fails because its `Guid` metadata is missing.
 * Fixed: Publishing a module to the PowerShell Gallery fails because its `Description` metadata is missing.
+* Fixed: Licensing and documentation files being copied twice during a build, once not into the module's directory.
+* Fixed: Copying licensing files fails because file extensions are missing.
 
 ## 2.1.0
 
