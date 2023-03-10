@@ -11,6 +11,8 @@ prerelease label is used to avoid problems with SemVer 2's alphabetical preceden
 Gallery.
 * Default build behavior no longer runs multiple builds on the same computer, so we don't need to delete any existing
 .zip files.
+* Default build no longer publishes a module's .nupkg as an artifact unless a build is successful since the .nupkg file
+isn't useful for debugging failed tests.
 
 ### Fixes
 

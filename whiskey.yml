@@ -57,6 +57,18 @@ Build:
     Path: appveyor
     Argument: [ 'PushArtifact', '.output/MODULE_NAME-$(WHISKEY_SEMVER2).zip', '-DeploymentName', 'GitHub' ]
 
+- Pester:
+    Configuration:
+        Run:
+            Path: Tests\*.Tests.ps1
+            Exit: true
+            Throw: true
+        TestResult:
+            Enabled: true
+            OutputPath: .output\pester.xml
+            TestSuiteName: Template-PSModule-OSS-Apache2.0
+        Output:
+            Verbosity: Detailed
 
 - PublishPowerShellModule:
     Path: MODULE_NAME
@@ -70,14 +82,3 @@ Build:
         '-DeploymentName',
         'PowerShellGallery'
     ]
-
-- Pester:
-    Configuration:
-        Run:
-            Path: Tests\*.Tests.ps1
-            Exit: true
-            Throw: true
-        TestResult:
-            Enabled: true
-            OutputPath: .output\pester.xml
-            TestSuiteName: Template-PSModule-OSS-Apache2.0
