@@ -21,6 +21,7 @@ isn't useful for debugging failed tests.
 * Fixed: Publishing a module to the PowerShell Gallery fails because its `Description` metadata is missing.
 * Fixed: Licensing and documentation files being copied twice during a build, once not into the module's directory.
 * Fixed: Copying licensing files fails because file extensions are missing.
+* Fixed: Default Pester test suite name isn't the module's name.
 
 ## 2.1.0
 
