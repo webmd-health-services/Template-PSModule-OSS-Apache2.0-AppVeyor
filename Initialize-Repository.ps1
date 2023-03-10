@@ -4,6 +4,9 @@ param(
     [String]$ModuleName,
 
     [Parameter(Mandatory)]
+    [String] $ModuleDescription,
+
+    [Parameter(Mandatory)]
     $GitHubOrganizationName
 )
 
@@ -61,6 +64,7 @@ foreach( $repoFile in $repoFiles )
     $newText = $text = Get-Content -Path $filePath -Raw
     $newText = $newText -creplace 'MODULE_NAME',$ModuleName
     $newText = $newText -creplace 'MODULE_GUID',$moduleGuid
+    $newText = $newText -creplace 'MODULE_DESCRIPTION',$ModuleDescription
     $newText = $newText -creplace 'GITHUB_ORGANIZATION_NAME',$GitHubOrganizationName
     $newText = $newText -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )

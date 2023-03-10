@@ -10,7 +10,7 @@
 
 * Fixed: Initialize-Repository.ps1 doesn't replace `MODULE_NAME` placeholder in files.
 * Fixed: Publishing a module to the PowerShell Gallery fails because its `Guid` metadata is missing.
-
+* Fixed: Publishing a module to the PowerShell Gallery fails because its `Description` metadata is missing.
 
 ## 2.1.0
 
