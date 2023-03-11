@@ -21,7 +21,7 @@
     ModuleVersion = '0.0.0'
 
     # ID used to uniquely identify this module
-    GUID = ''
+    GUID = 'MODULE_GUID'
 
     # Author of this module
     Author = 'WebMD Health Services'
@@ -116,8 +116,7 @@
             Prerelease = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = @'
-'@
+            ReleaseNotes = 'https://github.com/GITHUB_ORGANIZATION_NAME/MODULE_NAME/blob/main/CHANGELOG.md'
         } # End of PSData hashtable
 
     } # End of PrivateData hashtable

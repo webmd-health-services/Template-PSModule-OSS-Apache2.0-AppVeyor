@@ -1,7 +1,13 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [Parameter(Mandatory)]
-    [String]$ModuleName
+    [String] $ModuleName,
+
+    [Parameter(Mandatory)]
+    [String] $ModuleDescription,
+
+    [Parameter(Mandatory)]
+    [String] $GitHubOrganizationName
 )
 
 Set-StrictMode -Version 'Latest'
@@ -49,14 +55,18 @@ foreach( $file in $filesWithModulePrefix )
     Rename-Item -Path $file.FullName -NewName $newName
 }
 
+$moduleGuid = [Guid]::NewGuid()
 Write-Information ("Replacing ""MODULE_NAME"" -> ""$($ModuleName)"" in file contents.")
 $repoFiles = Get-ChildItem -Path $getChildItemPath -Exclude '.git' -Recurse -File
 foreach( $repoFile in $repoFiles )
 {
     $filePath = $repoFile.FullName | Resolve-Path -Relative
-    $text = Get-Content -Path $filePath -Raw
-    $newText = $text -replace 'MODULE_NAME',$ModuleName
-    $newText = $text -creplace '\[YYYY\]', (Get-Date).Year
+    $newText = $text = Get-Content -Path $filePath -Raw
+    $newText = $newText -creplace 'MODULE_NAME',$ModuleName
+    $newText = $newText -creplace 'MODULE_GUID',$moduleGuid
+    $newText = $newText -creplace 'MODULE_DESCRIPTION',$ModuleDescription
+    $newText = $newText -creplace 'GITHUB_ORGANIZATION_NAME',$GitHubOrganizationName
+    $newText = $newText -creplace '\[YYYY\]', (Get-Date).Year
     if( $text -ne $newText -and $PSCmdlet.ShouldProcess($filePath, "replace MODULE_NAME -> $($ModuleName)") )
     {
         Write-Verbose -Message "  $($filePath)"

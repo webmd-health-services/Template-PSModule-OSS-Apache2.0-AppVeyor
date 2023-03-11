@@ -1,7 +1,13 @@
-# Using This Template
+
+# Template-PSModules-OSS-Apache2.0-AppVeyor
+
+## Using This Template
 
 Click the "Use this template" button above. Clone the new repository. Run the `.\Initialize-Repository.ps1` script.
-Pass the name of the module to the `ModuleName` parameter. The script will:
+Pass the name of the module to the `ModuleName` parameter, the module's description to the `ModuleDescription`
+parameter, and your GitHub organization URL slug to the `GitHubOrganizationName` parameter.
+
+The script will:
 
 * Rename this file to TODO.md (there are additional steps to take afterward)
 * Puts the default README.md file in place.
@@ -12,12 +18,11 @@ Pass the name of the module to the `ModuleName` parameter. The script will:
 * If Git is installed, adds all the changes, and amends the initial commit with them so all traces of the template are
   removed.
 
-# Manual Steps
+## Manual Steps
 
 Things you'll still need to do after creating your repository:
 
 * Turn on branch protections.
-* Create "develop" branch.
 * Create a build in AppVeyor.
 * Create a feature branch.
 * Commit and push your new branch. A build should run in AppVeyor and finish successfully after a minute or so. The
