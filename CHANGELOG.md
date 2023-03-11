@@ -1,6 +1,6 @@
 # Template-PSModule-OSS-Apache2.0 Changelog
 
-## 2.2.0
+## 2.2.0 (2023-03-10)
 
 ### Changes
 

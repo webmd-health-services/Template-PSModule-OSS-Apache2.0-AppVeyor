@@ -1,13 +1,13 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [Parameter(Mandatory)]
-    [String]$ModuleName,
+    [String] $ModuleName,
 
     [Parameter(Mandatory)]
     [String] $ModuleDescription,
 
     [Parameter(Mandatory)]
-    $GitHubOrganizationName
+    [String] $GitHubOrganizationName
 )
 
 Set-StrictMode -Version 'Latest'
