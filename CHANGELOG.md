@@ -1,6 +1,20 @@
 # Template-PSModule-OSS-Apache2.0 Changelog
 
-## 2.2.0 (2023-03-10)
+## 2.3.0
+
+> 27 Mar 2026
+
+* Update whiskey.yml to support latest version of Whiskey (0.64.0).
+* Adding Windows PowerShell 5.1 on Windows Server 2016 to AppVeyor test matrix.
+* Adding Ubuntu 20 and 22 to AppVeyor test matrix.
+* Adding macOS 13 "Ventura" and macos 14 "Sonoma" to AppVeyor test matrix.
+* Removing import script. We don't use them anymore.
+* Removing test initialization script. Fallen out of favor.
+* Removing test helper module. Fallen out of favor.
+
+## 2.2.0
+
+> 10 Mar 2023
 
 ### Changes
 

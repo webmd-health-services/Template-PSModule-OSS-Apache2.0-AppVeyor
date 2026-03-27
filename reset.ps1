@@ -14,4 +14,5 @@ Demonstrates how to call this script.
 param(
 )
 
+#Requires -Version 5.1
 Set-StrictMode -Version 'Latest'
