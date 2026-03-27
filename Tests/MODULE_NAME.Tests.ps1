@@ -4,7 +4,7 @@
 Set-StrictMode -Version 'Latest'
 
 BeforeAll {
-    & (Join-Path -Path $PSScriptRoot -ChildPath 'Initialize-Test.ps1' -Resolve)
+    Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath '..\MODULE_NAME' -Resolve)
 
     function GivenModuleImported
     {
