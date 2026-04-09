@@ -19,17 +19,17 @@ Build:
 - MergeFile:
     .OnlyBy: BuildServer
     # Builds run twice on some serves. Only run this step if the module hasn't been merged yet.
-    IfExists: MODULE_NAME\Functions\*.ps1
+    .IfExists: MODULE_NAME\Functions\*.ps1
     Path:
     - MODULE_NAME\Functions\*.ps1
     DestinationPath: MODULE_NAME\MODULE_NAME.psm1
     DeleteSourceFiles: true
     TextSeparator: "$(NewLine)$(NewLine)"
 
-- PowerShell: init.ps1
+- PowerShell: .\init.ps1
   .ExceptDuring: Clean
 
-- PowerShell: reset.ps1
+- PowerShell: .\reset.ps1
   .OnlyDuring: Clean
 
 - CopyFile:
